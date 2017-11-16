@@ -66,7 +66,7 @@ class DefaultPaginator(BasePaginator):
         return CustomPage(self.object_list[bottom:top], number, self)
 
     def _get_num_pages(self):
-        if self._num_pages is None:
+        if getattr(self, '_num_pages', None) is None:
             if self.count == 0 and not self.allow_empty_first_page:
                 self._num_pages = 0
             else:
